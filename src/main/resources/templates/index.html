@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/stylesheet.css}">
+    <link rel="stylesheet" th:href="@{/css/stylesheet_index.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <title>Biblioteka</title>
+</head>
+<body>
+    <div id="index-flex">
+        <div id="index-tekstas-box">
+            <h1>KITM FILMAI</h1>
+            <p>Sveiki atvykę</p>
+        </div>
+        <div class="forma">
+            <p th:if="${param.error}" class="neigiama-zinute">Netinkamas el. paštas arba slaptažodis</p>
+            <form method="post" class="prisijungtimo-forma" th:action="@{/}" role="form">
+                <!--       Svarbu, kad name reikšmės, kur rašomas email būtų: username, o slaptažodis: password         -->
+                <div>
+                    <input type="email" name="username" required id="email" placeholder="El. pašto adresas" autofocus/>
+                </div>
+                <div>
+                    <input type="password" name="password" required id="slaptazodis" placeholder="Slaptažodis"/>
+                </div>
+                <div>
+                    <input class="mygtukas" type="submit" value="Prisijungti">
+                </div>
+            </form>
+            <hr>
+            <p class="tekstas-centre">Dar neturite paskiros?</p>
+            <a href="/registracija">
+                <button class="mygtukas">Užsiregistruokite</button>
+            </a>
+        </div>
+    </div>
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

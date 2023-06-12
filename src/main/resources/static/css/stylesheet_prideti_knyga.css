@@ -1,0 +1,14 @@
+.forma {
+    min-width: 600px;
+    max-width: 600px;
+}
+
+#santrauka {
+    height: 180px;
+    width: 100%;
+    resize: none;
+}
+
+#prideti-knyga-paveiksliukas {
+    display: flex;
+}

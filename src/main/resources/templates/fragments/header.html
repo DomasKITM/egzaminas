@@ -1,0 +1,13 @@
+<header xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <ul class="navigacija">
+        <li><a th:href="@{/pagrindinis}">Pagrindinis</a></li>
+        <li sec:authorize="hasRole('ADMINISTRATORIUS')"><a th:href="@{/vartotojai}">Vartotojai</a></li>
+        <li><a th:href="@{/filmai}">Filmai</a></li>
+        <li><a th:href="@{/kategorijos}">Kategorijos</a></li>
+    </ul>
+    <div id="navigacija-vartotojas">
+        <p sec:authorize="isAuthenticated()" sec:authentication="principal.vardas"></p>
+        <a th:href="@{/logout}">Atsijungti</a>
+    </div>
+</header>

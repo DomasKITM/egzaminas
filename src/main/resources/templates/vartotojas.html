@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/stylesheet.css}">
+    <link rel="stylesheet" th:href="@{/css/stylesheet_vartotojas.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <title>Vartotojo informacija</title>
+</head>
+<body>
+<header th:replace="~{fragments/header}"></header>
+<section class="turinys">
+    <h1 th:inline="text">Vartotojo [[${vartotojas.vardas}]] informacija</h1>
+    <div id="vartotojo-informacija">
+        <div><p>ID:</p><p th:text="${vartotojas.id}"></p></div>
+        <div><p>Vardas:</p><p th:text="${vartotojas.vardas}"></p></div>
+        <div><p>Pavardė:</p><p th:text="${vartotojas.pavarde}"></p></div>
+        <div><p>El. paštas:</p><p th:text="${vartotojas.email}"></p></div>
+        <div>
+            <a th:if="${vartotojas.aktyvus}" th:href="@{/vartotojas/uzblokuoti(id=${vartotojas.id}, vaizdas=${vaizdas})}">
+                <button class="mygtukas-mazas">Užblokuoti</button>
+            </a>
+            <a th:unless="${vartotojas.aktyvus}" th:href="@{/vartotojas/atblokuoti(id=${vartotojas.id}, vaizdas=${vaizdas})}">
+                <button class="mygtukas-mazas">Atblokuoti</button>
+            </a>
+        </div>
+    </div>
+</section>
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

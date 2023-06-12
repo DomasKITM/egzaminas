@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/stylesheet.css}">
+    <link rel="stylesheet" th:href="@{/css/stylesheet_prideti_knyga.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <title>Filmas</title>
+</head>
+<body>
+<header th:replace="~{fragments/header}"></header>
+<section class="turinys">
+<h1 th:text="${filmas.pavadinimas}"></h1>
+<p th:text="${filmas.aprasas}"></p>
+<p th:text="${filmas.reitingas}"></p>
+<p th:text="${filmas.kategorija.pavadinimas}"></p>
+    <form th:action="@{/komentaras/prideti}" method="post" th:object="${komentaras_objektas}" id="komentaras">
+        <input type="text" maxlength="500" th:field="*{komentaras}" form="komentaras" required></input>
+        <input type="submit" value="Pridėti" class="mygtukas-mazas"/>
+    </form>
+</section>
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

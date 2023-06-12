@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/stylesheet.css}">
+    <link rel="stylesheet" th:href="@{/css/stylesheet_kategorijos.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <title>Kategorijos</title>
+</head>
+<body>
+<header th:replace="~{fragments/header}"></header>
+<section class="turinys">
+    <h1>Kategorijos</h1>
+    <form th:action="@{/kategorijos/prideti}" method="post" th:object="${kategorija}" sec:authorize="hasRole('ADMINISTRATORIUS')">
+        <div id="kategorijos-prideti">
+            <label for="kategorijos-pavadinimas">Kategorijos pavadinimas: </label>
+            <input type="text" name="kategorijos-pavadinimas" id="kategorijos-pavadinimas" th:field="*{pavadinimas}" placeholder="Ilgis - 100 simbolių" maxlength="100" required/>
+            <input type="submit" value="Pridėti" class="mygtukas-mazas"/>
+        </div>
+        <div th:if="${zinute}" th:text="${zinute}" th:class="${zinutesKlase}"/>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Kategorijos</th>
+                <th>Filmų skaičius</th>
+                <th sec:authorize="hasRole('ADMINISTRATORIUS')"></th>
+                <th sec:authorize="hasRole('ADMINISTRATORIUS')"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="kategorija : ${visos_kategorijos}">
+                <td th:text="${kategorija.pavadinimas}"></td>
+                <td class="tekstas-centre">
+                    <a th:text="${kategorija.filmai.size()}" th:href="@{/kategorija/{id}(id = ${kategorija.id})}"></a>
+                </td>
+                <td sec:authorize="hasRole('ADMINISTRATORIUS')">
+                    <a th:href="@{/kategorijos/redaguoti/{id}(id = ${kategorija.id})}">
+                        <button class="mygtukas-mazas">Redaguoti</button>
+                    </a>
+                </td>
+                <td sec:authorize="hasRole('ADMINISTRATORIUS')">
+                    <a th:href="@{/kategorijos/trinti(id = ${kategorija.id})}">
+                        <button class="mygtukas-mazas">Trinti</button>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

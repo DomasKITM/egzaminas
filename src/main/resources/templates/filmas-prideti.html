@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/stylesheet.css}">
+    <link rel="stylesheet" th:href="@{/css/stylesheet_prideti_knyga.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <title>Pridėti filmą</title>
+</head>
+<body>
+    <header th:replace="~{fragments/header}"></header>
+    <section class="turinys">
+        <h1>Pridėti filmą</h1>
+        <p th:if="${zinute}" th:text="${zinute}" th:class="${zinutesKlase}"></p>
+        <div class="forma">
+            <form th:action="@{/filmai/prideti}" th:object="${filmas}" method="post" id="prideti-filmas-forma" enctype="multipart/form-data">
+                <div>
+                    <label for="pavadinimas">Pavadinimas</label>
+                    <input type="text" name="pavadinimas" id="pavadinimas" th:field="*{pavadinimas}" form="prideti-filmas-forma" maxlength="255" required/>
+                </div>
+                <div>
+                    <label for="santrauka">Santrauka</label>
+                    <textarea name="santrauka" id="santrauka" th:field="*{aprasas}" maxlength="500" placeholder="Maksimalus ilgis: 500 simbolių" required></textarea>
+                </div>
+                <div>
+                    <label for="reitingas">Reitingas</label>
+                    <input min="1" max="10" type="number" step="0.1" name="reitingas" id="reitingas" th:field="*{reitingas}" form="prideti-filmas-forma" required/>
+                </div>
+                <div>
+                    <label for="kategorija"></label>
+                    <select name="kategorija" id="kategorija" form="prideti-filmas-forma" required>
+                        <option value="" disabled selected>Pasirinkite kategoriją</option>
+                        <option th:each="kategorija : ${visos_kategorijos}" th:value="${kategorija.id}" th:text="${kategorija.pavadinimas}"></option>
+                    </select>
+                </div>
+                <div>
+                    <input type="submit" value="Pridėti" form="prideti-filmas-forma">
+                </div>
+            </form>
+        </div>
+    </section>
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

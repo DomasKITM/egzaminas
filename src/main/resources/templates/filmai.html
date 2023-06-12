@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/stylesheet.css}">
+    <link rel="stylesheet" th:href="@{/css/stylesheet_filmai.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <title>Filmai</title>
+</head>
+<body>
+    <header th:replace="~{fragments/header}"></header>
+    <section class="turinys">
+        <h1>Filmai</h1>
+        <div id="knygos-paieska-prideti">
+            <form th:action="@{/filmai/paieska}">
+                <label for="filmai-paieska">Filmų paieška:</label>
+                <input type="text" id="filmai-paieska" th:value="${uzklausa}" name="uzklausa" required placeholder="Knygos pavadinimas ar jo dalis">
+                <button class="mygtukas-mazas">Ieškoti</button>
+            </form>
+            <a href="/filmai/prideti" sec:authorize="hasRole('ADMINISTRATORIUS')"><button class="mygtukas-mazas">Pridėti filmą</button></a>
+        </div>
+        <p th:if="${zinute}" th:text="${zinute}" th:class="${zinutesKlase}"></p>
+        <h3 th:if="${paieskos_uzklausa}" th:text="${paieskos_uzklausa}"></h3>
+        <h3 th:if="${kategorijos_filmai}" th:text="${kategorijos_filmai}"></h3>
+        <table th:if="not ${#lists.isEmpty(visi_filmai)}">
+            <thead>
+                <tr>
+                    <th>Pavadinimas</th>
+                    <th>Aprašas</th>
+                    <th>Reitingas</th>
+                    <th>Kategorija</th>
+                    <th sec:authorize="hasRole('ADMINISTRATORIUS')"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="filmas : ${visi_filmai}">
+                    <td><a th:href="@{/filmai/filmas/{id}(id=${filmas.id})}" th:text="${filmas.pavadinimas}"></a></td>
+                    <td th:text="${filmas.aprasas}"></td>
+                    <td th:text="${filmas.reitingas}" class="tekstas-centre"></td>
+                    <td th:text="${filmas.kategorija?.pavadinimas}" class="tekstas-centre"></td>
+                    <td sec:authorize="hasRole('ADMINISTRATORIUS')"><a th:href="@{/filmai/redaguoti/{id}(id=${filmas.id})}"><button class="mygtukas-mazas">Redaguoti</button></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <p th:if="${#lists.isEmpty(visi_filmai)}">Filmų nėra</p>
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

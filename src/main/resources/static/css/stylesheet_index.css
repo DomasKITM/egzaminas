@@ -1,0 +1,15 @@
+#index-flex {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-top: 10vw;
+}
+
+#index-flex > div {
+    margin: 20px;
+    /* flex-grow: 1; */
+}
+
+#index-tekstas-box {
+    font-size: 1.4em;
+}

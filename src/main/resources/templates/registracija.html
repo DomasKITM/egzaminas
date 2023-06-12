@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" href="css/stylesheet_registracija.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <title>Registracija</title>
+</head>
+<body>
+<section class="turinys">
+    <h1>Registracija</h1>
+    <div class="forma">
+        <form th:action="@{/registracija}" th:object="${vartotojas}" method="post" onsubmit="return patikrintiSlaptazodius(this)">
+            <div>
+                <input type="text" name="vardas" id="vardas" th:field="*{vardas}" placeholder="Vardas" autofocus required/>
+            </div>
+            <div>
+                <input type="text" name="pavarde" id="pavarde" th:field="*{pavarde}" placeholder="Pavardė" required/>
+            </div>
+            <div>
+                <input type="email" name="email" id="email" th:field="*{email}" placeholder="El. paštas" required/>
+                <p class="neigiama-zinute" th:if="${#fields.hasErrors('email')}" th:errorclass="error" th:errors="*{email}"></p>
+            </div>
+            <div>
+                <input type="password" name="slaptazodis" id="slaptazodis" th:field="*{slaptazodis}" placeholder="Slaptažodis" minlength="5" required/>
+            </div>
+            <div>
+                <input type="password" name="slaptazodis1" id="slaptazodis1" placeholder="Pakartokite slaptažodį" minlength="5" required/>
+            </div>
+            <div>
+                <input type="submit" value="Registruotis" class="mygtukas"/>
+            </div>
+        </form>
+        <hr class="tarpas_skirtukui">
+        <a th:href="@{/}">
+            <button class="mygtukas" type="button">Grįžti</button>
+        </a>
+    </div>
+</section>
+<footer th:replace="~{fragments/footer}"></footer>
+<script src="/js/registracija.js"></script>
+</body>
+</html>

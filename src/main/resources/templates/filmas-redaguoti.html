@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/stylesheet.css}">
+    <link rel="stylesheet" th:href="@{/css/stylesheet_prideti_knyga.css}">
+    <link rel="stylesheet" th:href="@{/css/stylesheet_redaguoti_knyga.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <title>Pridėti Filmą</title>
+</head>
+<body>
+<header th:replace="~{fragments/header}"></header>
+<section class="turinys">
+    <h1>Redaguoti filmą</h1>
+    <p th:if="${zinute}" th:text="${zinute}" th:class="${zinutesKlase}"></p>
+    <div id="redaguoti-filmas-turinys">
+        <div class="forma">
+            <form th:action="@{/filmai/redaguoti}" th:object="${filmas}" method="post" id="redaguoti-filmas-forma" enctype="multipart/form-data">
+                <div hidden="hidden">
+                    <input type="text" name="id" id="id" th:field="*{id}" form="redaguoti-filmas-forma" readonly>
+                </div>
+                <div>
+                    <label for="pavadinimas">Pavadinimas</label>
+                    <input type="text" name="pavadinimas" id="pavadinimas" th:field="*{pavadinimas}" form="redaguoti-filmas-forma" maxlength="255" required/>
+                </div>
+                <div>
+                    <label for="aprasas">Aprašas</label>
+                    <textarea name="aprasas" id="aprasas" th:field="*{aprasas}" maxlength="500" placeholder="Maksimalus ilgis: 500 simbolių" required></textarea>
+                </div>
+                <div>
+                    <label for="reitingas">Kopijų skaičius</label>
+                    <input min="1" max="10" step="0.1" type="number" name="reitingas" id="reitingas" th:field="*{reitingas}" form="redaguoti-filmas-forma" required/>
+                </div>
+                <div>
+                    <label for="kategorija"></label>
+                    <select name="kategorija" id="kategorija" form="redaguoti-filmas-forma" required>
+                        <option th:if="${filmas.kategorija?.id}" th:each="kategorija : ${visos_kategorijos}" th:value="${kategorija.id}" th:text="${kategorija.pavadinimas}" th:selected="${filmas.kategorija.id} == ${kategorija.id}"></option>
+                        <option th:unless="${filmas.kategorija?.id}" value="" disabled selected>Pasirinkite kategoriją</option>
+                        <option th:unless="${filmas.kategorija?.id}" th:each="kategorija : ${visos_kategorijos}" th:value="${kategorija.id}" th:text="${kategorija.pavadinimas}"></option>
+                    </select>
+                </div>
+                <div>
+                    <input type="submit" value="Atnaujinti" form="redaguoti-filmas-forma">
+                </div>
+                <hr class="tarpas_skirtukui">
+                <a th:href="@{/filmai/trinti(id=${filmas.id})}"><button class="mygtukas" type="button">Trinti filmą</button></a>
+            </form>
+        </div>
+    </div>
+</section>
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

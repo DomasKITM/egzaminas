@@ -1,0 +1,228 @@
+/* Bandyk naudoti temą: faded navy #444C5C, punch #CE5A57, ocean breeze #78A5A3, warm #E1B16A*/
+
+* {
+    font-family: 'Roboto Slab', serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    width: 80%;
+    margin: 0 auto;
+    color: #444C5C;
+    line-height: 1.4;
+    background-color: #eff0f1;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer {
+    margin-top: auto;
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
+
+.tarpas_skirtukui {
+    margin-bottom: 10px;
+}
+
+.turinys {
+    font-size: large;
+    margin-top: 2vw;
+}
+
+h1 {
+    font-size: xx-large;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h3 {
+    margin-top: 30px;
+    text-align: center;
+}
+
+table {
+    margin: 0 auto;
+    margin-top: 10px;
+    border-spacing: 0;
+}
+
+table td {
+    padding: 5px 30px;
+}
+
+thead {
+    background-color: #F5E397;
+    font-size: 1.1em;
+}
+
+thead tr th {
+    padding: 5px;
+}
+
+table tbody tr:nth-of-type(even) {
+    background-color: #F7C6AE;
+}
+
+table tbody tr:nth-of-type(odd) {
+    background-color: #F5E6CC;
+}
+
+tr img {
+    height: 60px;
+}
+
+.klaida {
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #E1B16A;
+    margin-top: 10vw;
+    width: 50vh;
+    font-size: 1.4em;
+}
+
+.klaida * {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+header {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    padding-top: 2vw;
+}
+
+.navigacija {
+    font-size: larger;
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+}
+
+#navigacija-vartotojas {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#navigacija-vartotojas a {
+    color: #DE7A22;
+    text-decoration: none;
+}
+
+.navigacija li {
+    border-radius: 3px;
+    margin-left: 10px;
+}
+
+.navigacija li a {
+    display: inline-block;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.navigacija a {
+    font-size: 1.3em;
+    color: #DE7A22;
+    text-decoration: none;
+}
+
+.navigacija li:hover {
+    background: #DEDFE0;
+    cursor: pointer;
+}
+
+.neigiama-zinute {
+    background: #F78888;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.teigiama-zinute {
+    background: #90CCF4;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.tekstas-centre {
+    text-align: center;
+}
+
+.mygtukas {
+    background-color: #CE5A57;
+    border-radius: 5px;
+    font-size: x-large;
+    height: 40px;
+    border: none;
+    width: 100%;
+}
+
+.mygtukas:hover {
+    cursor: pointer;
+}
+
+.mygtukas-mazas {
+    background-color: #EFA5A2;
+    border-radius: 5px;
+    font-size: large;
+    padding: 5px;
+    border: none;
+}
+
+.mygtukas-mazas:hover {
+    cursor: pointer;
+}
+
+.mygtukas-mazas:disabled {
+    cursor: not-allowed;
+    background-color: #ecbbb9;
+    color: #93969b;
+}
+
+.forma {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    max-width: 500px;
+    min-width: 500px;
+    padding: 20px;
+    background-color: #E1B16A
+}
+
+.forma form div * {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.forma input:not([type="submit"]) {
+    padding-left: 5px;
+    border-radius: 5px;
+    font-size: large;
+    border: none;
+}
+
+.forma input[type="submit"] {
+    background-color: #CE5A57;
+    border-radius: 5px;
+    font-size: x-large;
+    border: none;
+}
+
+.forma input[type="submit"]:hover {
+    cursor: pointer;
+}

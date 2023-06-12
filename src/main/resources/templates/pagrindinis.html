@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/stylesheet.css}">
+    <link rel="stylesheet" th:href="@{/css/stylesheet_pagrindinis.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <title>Biblioteka</title>
+</head>
+<body>
+<header th:replace="~{fragments/header}"></header>
+    <section sec:authorize="hasRole('ADMINISTRATORIUS')" class="turinys">
+        <p>Sveiki, Jums prieinamos funkcijos:</p>
+        <ul>
+            <li>Matyti visus registruotus vartotojus ir juos užblokuoti.</li>
+            <li>Matyti filmų kategorijas, jas redagtuoti ir trinti.</li>
+            <li>Matyti filmus, jauos pridėti, redaguoti ir trinti.</li>
+        </ul>
+    </section>
+    <section sec:authorize="hasRole('SKAITYTOJAS')" class="turinys">
+        <p>Sveiki, Jūs galite:</p>
+        <ul>
+            <li>Peržiūrėti filmų sąrašą.</li>
+            <li>Peržiūrėti filmų kategorijas ir joms priskirtus filmus.</li>
+            <li>Komentuoti</li>
+        </ul>
+    </section>
+    <footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>
